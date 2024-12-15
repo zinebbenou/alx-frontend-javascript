@@ -13,6 +13,16 @@ interface Directors extends Teacher {
   numberOfReports: number; // This is specific to Directors
 }
 
+// Create an interface for the printTeacher function
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
+// Create the printTeacher function
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
+  return `${firstName[0]}. ${lastName}`;
+};
+
 // Create objects of type Teacher
 const teacher1: Teacher = {
   firstName: 'Jane',
@@ -69,3 +79,15 @@ directorDiv.innerHTML = `
   <p>Number of Reports: ${director1.numberOfReports}</p>
 `;
 document.body.appendChild(directorDiv);
+
+// Example usage of the printTeacher function and display in HTML
+const printTeacherOutput = printTeacher("John", "Doe");
+const printTeacherDiv = document.createElement('div');
+printTeacherDiv.innerHTML = `
+  <h2>Print Teacher Output</h2>
+  <p>${printTeacherOutput}</p>
+`;
+document.body.appendChild(printTeacherDiv);
+
+// Logging to console as well
+console.log(printTeacher("John", "Doe"));  // Output: J. Doe
