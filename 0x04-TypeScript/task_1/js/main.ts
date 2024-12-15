@@ -1,4 +1,54 @@
-// Define the Teacher interface
+// Define an interface for the StudentClass constructor
+interface StudentClassConstructor {
+  new(firstName: string, lastName: string): StudentClass;
+}
+
+// Define an interface for the class methods
+interface StudentClass {
+  firstName: string;
+  lastName: string;
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+// Create the StudentClass class implementing the StudentClass interface
+class StudentClass implements StudentClass {
+  firstName: string;
+  lastName: string;
+
+  // Constructor to initialize firstName and lastName
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  // Method to return a string about working on homework
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  // Method to return the firstName
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+// Example usage of the StudentClass
+const student1 = new StudentClass('Jane', 'Doe');
+console.log(student1.workOnHomework());  // Output: Currently working
+console.log(student1.displayName());    // Output: Jane
+
+// Example usage of the printTeacher function
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
+  return `${firstName[0]}. ${lastName}`;
+};
+
+// Create an interface for the printTeacher function
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
+// Creating objects of type Teacher
 interface Teacher {
   firstName: string;
   lastName: string;
@@ -7,21 +57,6 @@ interface Teacher {
   yearsOfExperience?: number; // Optional attribute for yearsOfExperience
   contract?: boolean; // Optional attribute for contract
 }
-
-// Create the Directors interface extending Teacher
-interface Directors extends Teacher {
-  numberOfReports: number; // This is specific to Directors
-}
-
-// Create an interface for the printTeacher function
-interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
-}
-
-// Create the printTeacher function
-const printTeacher: printTeacherFunction = (firstName, lastName) => {
-  return `${firstName[0]}. ${lastName}`;
-};
 
 // Create objects of type Teacher
 const teacher1: Teacher = {
@@ -40,6 +75,11 @@ const teacher2: Teacher = {
   contract: false,
 };
 
+// Create an interface for the Directors, extending Teacher
+interface Directors extends Teacher {
+  numberOfReports: number; // Specific to Directors
+}
+
 // Create an object of type Directors
 const director1: Directors = {
   firstName: 'John',
@@ -49,7 +89,7 @@ const director1: Directors = {
   numberOfReports: 17, // numberOfReports is required for Directors
 };
 
-// Create a function to display teacher data
+// Function to display teacher data
 function displayTeacherInfo(teacher: Teacher) {
   const teacherDiv = document.createElement('div');
   teacherDiv.innerHTML = `
