@@ -21,7 +21,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"]
   },
   devServer: {
-    static: path.join(__dirname, 'dist'),  // Updated to use 'static' instead of 'contentBase'
+    static: path.join(__dirname, 'dist'),
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
@@ -33,5 +33,10 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
+  },
+  performance: {
+    hints: 'warning',  // Show warnings for large assets
+    maxAssetSize: 800000,  // Increase the asset size limit (in bytes)
+    maxEntrypointSize: 800000,  // Increase the entrypoint size limit
   }
 };
