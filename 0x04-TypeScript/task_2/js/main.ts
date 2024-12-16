@@ -42,6 +42,7 @@ class Teacher implements TeacherInterface {
   }
 }
 
+// Function to create an employee based on salary
 function createEmployee(salary: number | string): Teacher | Director {
   if (typeof salary === 'string' && salary.includes('$')) {
     salary = parseFloat(salary.replace('$', ''));
@@ -54,9 +55,29 @@ function createEmployee(salary: number | string): Teacher | Director {
   }
 }
 
+// Function to check if the employee is a Director
+function isDirector(employee: Teacher | Director): employee is Director {
+  return (employee as Director).workDirectorTasks !== undefined;
+}
+
+// Function to execute work tasks based on employee type
+function executeWork(employee: Teacher | Director) {
+  if (isDirector(employee)) {
+    console.log(employee.workDirectorTasks());
+  } else {
+    console.log(employee.workTeacherTasks());
+  }
+}
+
+// Create employee instances
 const employee1 = createEmployee(200); // Teacher
 const employee2 = createEmployee(1000); // Director
 const employee3 = createEmployee('$500'); // Director
+
+// Execute work tasks for each employee
+executeWork(employee1); // Expected: Getting to work
+executeWork(employee2); // Expected: Getting to director tasks
+executeWork(employee3); // Expected: Getting to director tasks
 
 // Get the output div element
 const outputDiv = document.getElementById('output');
