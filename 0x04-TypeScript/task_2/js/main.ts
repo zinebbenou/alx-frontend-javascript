@@ -99,3 +99,22 @@ if (outputDiv) {
   outputDiv.innerHTML += `<p>getCoffeeBreak: ${employee3.getCoffeeBreak()}</p>`;
   outputDiv.innerHTML += `<p>workTasks: ${employee3 instanceof Teacher ? employee3.workTeacherTasks() : employee3.workDirectorTasks()}</p>`;
 }
+
+// String literal type for Subjects
+type Subjects = "Math" | "History";
+
+// Function to teach a class based on today's subject
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === "Math") {
+    return "Teaching Math";
+  } else if (todayClass === "History") {
+    return "Teaching History";
+  }
+}
+
+// Add results to the output div for teachClass
+if (outputDiv) {
+  outputDiv.innerHTML += `<h2>Teaching Classes</h2>`;
+  outputDiv.innerHTML += `<p>Today's Class: Math - ${teachClass("Math")}</p>`;
+  outputDiv.innerHTML += `<p>Today's Class: History - ${teachClass("History")}</p>`;
+}
